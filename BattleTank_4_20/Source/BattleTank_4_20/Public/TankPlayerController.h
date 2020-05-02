@@ -17,6 +17,7 @@ class BATTLETANK_4_20_API ATankPlayerController : public APlayerController
 	
 	
 public:
+	void BeginPlay();
 
 	ATank * GetControlledTank() const;
 };
