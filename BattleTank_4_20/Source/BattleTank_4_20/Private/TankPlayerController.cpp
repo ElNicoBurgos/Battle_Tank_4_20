@@ -2,6 +2,7 @@
 
 #include "TankPlayerController.h"
 #include "Engine/World.h"
+#include "DrawDebugHelpers.h"
 #define OUT
 
 
@@ -56,7 +57,8 @@ bool ATankPlayerController::GetSightRayHitLocacion(FVector& OutHitLocation) cons
 	FVector LookDirection;
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("LookDirection: %s"), *(LookDirection.ToString()));
+		GetLookVectorHitLocation(LookDirection, OutHitLocation);
+		UE_LOG(LogTemp, Warning, TEXT("OutHitLocation: %s"), *(OutHitLocation.ToString()));
 	}
 	
 
@@ -70,6 +72,32 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector &
 								   ScreenLocation.Y,
 								   WorldLocation,
 								   LookDirection);
+	
+}
+
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector &OutHitLocation) const
+{
+	FHitResult Hit;
+	FVector StartLocation = PlayerCameraManager->GetCameraLocation();
+	FVector EndLocation = StartLocation + (LookDirection * LineTraceRange);
 
 	
+	if (GetWorld()->LineTraceSingleByChannel(OUT Hit,
+											 StartLocation,
+											 EndLocation,
+											 ECollisionChannel::ECC_Visibility)
+		)
+	{
+		OutHitLocation = Hit.Location;
+		DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 0.f, 0, 5.f);
+		
+		return true;
+	}
+	else
+	{
+		OutHitLocation = FVector(0);
+		return false;
+	}
+
+
 }
