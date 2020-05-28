@@ -43,7 +43,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 	if(GetSightRayHitLocacion(HitLocation))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *(HitLocation.ToString()));
+		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *(HitLocation.ToString()));
 	}
 }
 
@@ -58,7 +58,6 @@ bool ATankPlayerController::GetSightRayHitLocacion(FVector& OutHitLocation) cons
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
 		GetLookVectorHitLocation(LookDirection, OutHitLocation);
-		UE_LOG(LogTemp, Warning, TEXT("OutHitLocation: %s"), *(OutHitLocation.ToString()));
 	}
 	
 
