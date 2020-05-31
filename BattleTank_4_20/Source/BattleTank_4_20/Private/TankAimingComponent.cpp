@@ -4,6 +4,7 @@
 #include "Engine/World.h"
 
 
+
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
 {
@@ -18,7 +19,12 @@ UTankAimingComponent::UTankAimingComponent()
 void UTankAimingComponent::AimAt(FVector WorldSpaceAim)
 {
 	FString OurTankName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s location"), *OurTankName, *(WorldSpaceAim.ToString()));
+
+	FVector BarrelLocation = Barrel->GetComponentLocation();
+	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s location from %s "), *OurTankName, *(WorldSpaceAim.ToString()), *BarrelLocation.ToString());
+	//FString BarrelLocation = Barrel->GetComponentLocation().ToString();
+	//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s location from %s "), *OurTankName, *(WorldSpaceAim.ToString()), *BarrelLocation);
+	
 }
 
 // Called when the game starts
@@ -30,12 +36,16 @@ void UTankAimingComponent::BeginPlay()
 	
 }
 
-
 // Called every frame
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+{
+	Barrel = BarrelToSet;
 }
 
