@@ -18,10 +18,15 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::AimAt(FVector WorldSpaceAim, float LaunchSpeed)
 {
-	FString OurTankName = GetOwner()->GetName();
-	FVector BarrelLocation = Barrel->GetComponentLocation();
-
-	UE_LOG(LogTemp, Warning, TEXT("Firing at: %f"), LaunchSpeed);	
+	if (Barrel == nullptr)
+		return;
+	else
+	{
+		FString OurTankName = GetOwner()->GetName();
+		FVector BarrelLocation = Barrel->GetComponentLocation();
+		UE_LOG(LogTemp, Warning, TEXT("Firing at: %f"), LaunchSpeed);
+	}
+	
 }
 
 // Called when the game starts
