@@ -8,6 +8,8 @@
 
 class UTankBarrel;
 
+
+//Holds barrel's properties and Elevate Method
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_4_20_API UTankAimingComponent : public UActorComponent
 {
