@@ -24,10 +24,10 @@ private:
 	float MaxDegreesPerSeconds = 20.f; 
 
 	UPROPERTY(EditAnywhere, Category = Setup)
-	float MaxElevationRotation = 40.f;
+	float MaxElevationDegrees = 40.f;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
-	float MinElevationRotation = 0.f;
+	float MinElevationDegrees = 0.f;
 
 
 };
