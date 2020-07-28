@@ -9,13 +9,12 @@
 
 void ATank::Fire()
 {
-
-	UE_LOG(LogTemp, Warning, TEXT("%f Tank fires"), GetWorld()->GetTimeSeconds());
 	if(!Barrel) { return; }
-	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, 
+	AProjectile * Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, 
 										Barrel->GetSocketLocation("Projectile"), 
 										Barrel->GetSocketRotation("Projectile") 
 										);
+	Projectile->LaunchProjectile(LaunchSpeed);
 }
 
 void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
