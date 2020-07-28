@@ -5,6 +5,13 @@
 #include "TankTurret.h"
 #include "TankAimingComponent.h"
 
+
+void ATank::Fire()
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("%f Tank fires"), GetWorld()->GetTimeSeconds());
+}
+
 void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
